@@ -87,3 +87,26 @@ body{
 .my_search_text {
     padding-top: 20px;
 }
+.my_custom_table{
+    min-width: 400px;
+    font-size: 14px;
+}
+.my_custom_thead{
+    font-weight: normal;
+    text-transform: uppercase;
+    background-color: grey;
+}
+.custom_image {
+    width: 100px;
+    height: 100px;
+}
+.custom_a {
+    text-decoration: none;
+}
+.custom_icon {
+    text-decoration: none;
+    color: lightgray;
+}
+.my_custom_button {
+    margin-top:5px;
+}

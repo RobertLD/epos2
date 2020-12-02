@@ -57,7 +57,9 @@ ROOT_URLCONF = 'epos2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'shop', 'templates/shop'), os.path.join(BASE_DIR, 'search_app', 'templates/') ],
+        'DIRS': [os.path.join(BASE_DIR, 'shop', 'templates/shop'), 
+            os.path.join(BASE_DIR, 'search_app', 'templates/'),
+            os.path.join(BASE_DIR, 'car', 'templates/') ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
