@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from shop.models import Product
 from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
+from order.models import Order, OrderItem
 # Create your views here.
 
 def _cart_id(request):
@@ -38,6 +39,36 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
             counter += cart_item.quantity
     except ObjectDoesNotExist:
         pass
+    if request.method == 'POST':
+        try:
+            token = request.POST['csrfmiddlewaretoken']
+            email = request.POST['orderEmail']
+            name = request.POST['billingName']
+            print(token, email, name)
+       
+            try:
+                order_details = Order.objects.create(
+                    token = token,
+                    total = total,
+                    emailAddress= email,
+                    billingName = name,
+                )
+                order_details.save()
+                for order_item in cart_items:
+                    oi = OrderItem.objects.create(
+                        product = order_item.product.name,
+                        quantity = order_item.quantity,
+                        price = order_item.product.price,
+                        order = order_details,
+                    )
+                    oi.save()
+                    order_item.delete()
+                    print("order created")
+                return redirect('shop:allProdCat')
+            except ObjectDoesNotExist as e:
+                print(e)
+        except Exception as  e:
+            print(e)
     return render(request, 'cart.html', dict(cart_items=cart_items, total=total, counter=counter))
 
 def cart_remove(request, product_id):

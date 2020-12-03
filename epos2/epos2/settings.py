@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'shop',
     'search_app',
     'cart',
+    'order',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +61,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'shop', 'templates/shop'), 
             os.path.join(BASE_DIR, 'search_app', 'templates/'),
-            os.path.join(BASE_DIR, 'car', 'templates/') ],
+            os.path.join(BASE_DIR, 'cart', 'templates/'),
+            os.path.join(BASE_DIR, 'order', 'templates/') ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,3 +134,4 @@ STATICFILES_DIRS = (
 )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

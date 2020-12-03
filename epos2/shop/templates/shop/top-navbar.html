@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="navbar-collapse">
+    <div class="my_custom_menu navbar-nav mr-auto my_custom_menu ">
+        <ul class = "navbar-nav mr-auto my_custom_menu">
+            {% if request.user.is_authenticated and request.user.first_name %}
+            <li class="nav-item my_custom_menu">
+                Welcome, {{ request.user.first_name }} |&nbsp;
+            </li>
+            <li class="nav-item my_custom_menu">
+                <a href="{% url 'signout' %}">Sign out</a>
+            </li>
+            {% else %}
+            <li class="nav-item my_custom_menu">
+                <a class="nav-link my_custom_menu" href="{%url 'signup' %}">Sign up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'signin' %}"> Sign in</a>
+            </li>
+            {% endif %}
+        </ul>    
+    </div>
+</div>
+</nav>

@@ -94,6 +94,19 @@ cart
             </tbody>
             </table>
                 <div class = "mx-auto">
+                    <form method="POST" action="">
+                        <div class="form-group">
+                            {% csrf_token %}
+                            <br>
+                            <label for="orderEmail">Email address</label>
+                            <input type="email" class="form-control" name="orderEmail" placeholder="Enter email">
+                            <label for="billingName">Name for Order</label>
+                            <input type="text" class="form-control" name="billingName" placeholder="Enter name">
+                            <br>
+                            <button type="submit" class = "btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
                     <a href = "{% url 'shop:allProdCat' %}" class = "btn btn-secondary btn-block my_custom_botton">Continue Shopping.</a>
                 </div>
         </div>
