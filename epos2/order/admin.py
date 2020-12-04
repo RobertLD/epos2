@@ -14,13 +14,13 @@ class OrderItemAdmin(admin.TabularInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'billingName','emailAddress', 'created']
-    list_display_links = ('id', 'billingName')
-    search_fields = ['id', 'billingName', 'emailAddress']
+    list_display = ['id', 'billingName','emailAddress', 'created', 'status']
+    list_display_links = ('id', 'billingName', )
+    search_fields = ['id', 'billingName', 'emailAddress','status'],
     readonly_fields = ['id', 'token', 'total', 'emailAddress', 'created', 'billingName']
-
+    editable_fields = ['status']
     fieldsets = [
-        ('ORDER INFO', {'fields': ['id', 'token', 'total', 'created']}),
+        ('ORDER INFO', {'fields': ['id', 'token', 'total', 'created', 'status']}),
         ('BILLING INFO', {'fields': ['emailAddress','billingName']}),
     ]
     inlines = [
@@ -30,3 +30,5 @@ class OrderAdmin(admin.ModelAdmin):
         return False
     def has_add_permission(self, request):
         return False
+    def has_change_permission(self, request, obj = OrderItem):
+        return True

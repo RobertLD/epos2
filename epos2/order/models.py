@@ -8,6 +8,7 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     billingName = models.CharField(max_length=250, blank = True)
     billingAddress = models.CharField(max_length=250, blank = True)
+    status = models.CharField(max_length=250, default="In Progress", editable=True)
 
     class Meta:
         db_table = 'order'

@@ -33,12 +33,11 @@
         <p class = "text-justify">{{Category.description}}</p>
     </div>
     {% else %}
-        <img class = "my_image my_image_padding" src="{% static '' %}" alt ="Our product collection">
         </div>
         <br>
         <div>
         <h1 class = "text-center my_title">Our products Collection</h1>
-        <p class = "text-justify">At Mike's Tea shop we strive to provide the very bestest tea ever!</p>
+        <p class = "text-justify">At Mike's Tea shop we strive to provide the very bestest tea ever! + Other things</p>
     </div>
     {% endif %}
     <div class = "container">
@@ -46,7 +45,9 @@
         {% for product in products.object_list %}
             <div class = "my_bottom_margin col-9 col-sm-12 col-md-4 col-md-12 col-lg-4">
                 <div class="card text-center" style="min-width: 18rem;">
-                 <a href = "{{product.get_url}}"><img class="card-img-top my_image"src = "{{product.image.url}}" alt = "{{product.name}}"</a>
+                    {% if product.image %}
+                    <a href = "{{product.get_url}}"><img class="card-img-top my_image"src = "{{product.image.url}}" alt = "{{product.name}}"</a>
+                    {% endif %}
                  <div class = "card-body">
                     <h4>{{product.name}}</h4>
                     <p>${{product.price}}</p>
