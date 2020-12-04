@@ -9,31 +9,31 @@ from django.contrib.auth import login, authenticate, logout
 # Create your views here.
 
 def index(request):
-    text_var = 'This is my first Django Project'
+    text_var = 'Nothing to see here!'
     return HttpResponse(text_var) 
 
 # Category Views
 def allProdCat(request, c_slug = None):
-    c_page = None
+    catPage = None
     products = None
     if c_slug != None:
-        c_page = get_object_or_404(Category, slug = c_slug)
-        products_list = Product.objects.filter(Category=c_page,available=True)
+        catPage = get_object_or_404(Category, slug = c_slug)
+        productsList = Product.objects.filter(Category=catPage,available=True)
     else:
-        products_list = Product.objects.all().filter(available=True)
+        productsList = Product.objects.all().filter(available=True)
 
-    paginator = Paginator(products_list, 6)
+    pr = Paginator(productsList, 6)
     try:
         page = int(request.GET.get('page','1'))
     except:
         page = 1
     try:
-        products = paginator.page(page)
-    except(EmptyPage,InvalidPage):
-        products = paginator.page(paginator.num_pages)
-    return render(request, 'shop/category.html',{'Category' : c_page, 'products' : products})
+        products = pr.page(page)
+    except(EmptyPage, InvalidPage):
+        products = pr.page(pr.num_pages)
+    return render(request, 'shop/category.html',{'Category' : catPage, 'products' : products})
 
-def ProdCatDetail(request, c_slug, product_slug):
+def ProductCategoryDetail(request, c_slug, product_slug):
     try:
         product = Product.objects.get(Category__slug = c_slug, slug = product_slug)
     except Exception as e:
@@ -41,22 +41,22 @@ def ProdCatDetail(request, c_slug, product_slug):
     return render(request, 'shop/product.html', {'product': product})
 
 def signupView(request):
-    form = SignUpForm(request.POST or None)
+    f = SignUpForm(request.POST or None)
     if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
+        if f.is_valid():
+            f.save()
+            username = f.cleaned_data.get('username')
             signup_user = User.objects.get(username=username)
             customer_group = Group.objects.get(name='Customer')
             customer_group.user_set.add(signup_user)
         else:
-            form = SignUpForm(request.POST)
-    return render(request, 'accounts/signup.html', {'form': form})
+            f = SignUpForm(request.POST)
+    return render(request, 'accounts/signup.html', {'form': f})
 
 def signinView(request):
-    form = AuthenticationForm(data=request.POST or None)
+    f = AuthenticationForm(data=request.POST or None)
     if request.method == 'POST': 
-        if form.is_valid():
+        if f.is_valid():
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username = username, password = password)
@@ -66,8 +66,8 @@ def signinView(request):
             else:
                 return redirect('signup')
     else:
-        form = AuthenticationForm()
-    return render(request, 'accounts/signin.html',{'form': form})
+        f = AuthenticationForm()
+    return render(request, 'accounts/signin.html',{'form': f})
 
 def signoutView(request):
     logout(request)

@@ -1,5 +1,4 @@
 body{
-    /* font-family: 'Roboto', sans-serif; */
     font-family: 'Castoro', serif;
 }
 /* Navbar */
@@ -52,7 +51,7 @@ body{
 .my_image_padding {
     padding-top: 5px;
 }
-.my_bottom_margin {
+.my_bm {
     margin-bottom: 10px;
 }
 .card-body h4 {
@@ -62,15 +61,15 @@ body{
 }
 
 /* products */
-.my_prod_row_class {
+.product_row_class {
     padding-top: 15px;
     padding-bottom: 20px;
 }
-.my_prod_row_class .mx-auto p {
+.product_row_class .mx-auto p {
     color: #000;
     font-size: 12px
 }
-.my_prod_row_class .mx-auto p a {
+.product_row_class .mx-auto p a {
     text-decoration: None;
 }
 .my_prod_title {
@@ -80,7 +79,7 @@ body{
     padding-top: 15px;
     padding-bottom: 10px;
 }
-.my_prod_text {
+.mpt {
     padding-right: 20px;
     
 }
@@ -89,18 +88,18 @@ body{
     color: red;
     font-weight: bold;
 }
-.my_custom_div {
+.mcd {
     margin-bottom: 20px !important;    
 }
-.my_top_navbar_div {
+.mtn {
     height: 60px;
     line-height: 50px;
 }
 
-.my_custom_menu {
+.m_c_m {
     text-align: right !important;    
 }
-.my_custom_menu ul li {
+.m_c_m ul li {
     list-style: none;  
     color: black;
     text-transform: uppercase;
@@ -109,7 +108,7 @@ body{
     padding-right: 20px;
     display: inline;
 }
-.my_custom_menu ul li a {
+.m_c_m ul li a {
     text-decoration: none;
     color: black;
     list-style: none;
